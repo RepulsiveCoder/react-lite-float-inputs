@@ -1,0 +1,62 @@
+.rfl-input-wrapper {
+    position: relative;
+    margin: 2px 0;
+
+    --float-inputs-color-foreground: var(--input-color-primary, #EDEDED);
+    --float-inputs-color-background: var(--input-color-background, #151515);
+    --float-inputs-color-border: var(--input-color-border, color-mix(in srgb, var(--float-inputs-color-foreground) 50%, transparent 10%));
+    --float-inputs-color-placeholder: var(--input-color-placeholder, color-mix(in srgb, var(--float-inputs-color-foreground) 60%, transparent 40%));
+
+    input, textarea, select {
+        width: 100%;
+        padding: 14px 16px 8px;
+        font-size: 1rem;
+        line-height: 1.4em;
+        border: 1px solid var(--float-inputs-color-border);
+        border-radius: 6px;
+        background-color: var(--float-inputs-color-background);
+        box-sizing: border-box;
+        transition: box-shadow 0.3s, border-color 0.3s;
+
+        &:focus~label,
+        &:not(:placeholder-shown)~label {
+            transform: translate(14px, -9px) scale(0.75);
+            color: var(--float-inputs-color-foreground);
+            background-color: var(--float-inputs-color-background);
+            border: 1px solid var(--float-inputs-color-border);
+        }
+
+        &.input-select-blank-value {
+            &:not(:focus) {
+                color: var(--float-inputs-color-placeholder);
+            }
+            &~label {
+                visibility: hidden;
+            }
+        }
+
+        &:focus, &:focus~label {
+            outline: none;
+            border-color: var(--color-foreground);
+            box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-foreground) 50%, transparent 95%);
+        }
+    }
+
+    select {
+        box-sizing: border-box;
+        padding: 16px 16px 12px;
+    }
+
+    label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 0 16px;
+        transform: translate(0, 11px) scale(1);
+        pointer-events: none;
+        transition: transform 0.3s cubic-bezier(0.0, 0, 0.2, 1) 0ms, color 0.3s, visibility 0.3s;
+        transform-origin: top left;
+        color: var(--float-inputs-color-placeholder);
+        border-radius: 8px;
+    }
+}
