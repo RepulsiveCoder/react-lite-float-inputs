@@ -1,6 +1,6 @@
 {
   "name": "react-lite-float-inputs",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A lightweight, high-performance React input library featuring Material-style floating labels with minimal DOM footprint. Supports Input, TextArea, and Select with a unique dual-text feature (separate placeholder and label). Smooth CSS animations, border-integrated labels, and zero fieldset dependencies.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -10,7 +10,10 @@
     "rollup": "rollup -c --bundleConfigAsCjs"
   },
   "keywords": [],
-  "author": "Abdullah Ibne Alam",
+  "author": {
+    "name": "Abdullah Ibne Alam",
+    "url": "https://abdullahibnealam.com"
+  },
   "license": "ISC",
   "peerDependencies": {
     "react": ">=16.8.0",
