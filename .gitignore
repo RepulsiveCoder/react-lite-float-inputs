@@ -21,3 +21,4 @@ lerna-debug.log*
 .env.development
 .env.production
 .DS_Store # macOS specific
+.npmrc
