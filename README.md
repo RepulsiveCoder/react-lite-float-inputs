@@ -215,12 +215,18 @@ If you care about performance, DOM cleanliness, and polished micro-interactions 
 
 ## License
 
-MIT © react-lite-float-inputs
+MIT © Abdullah Ibne Alam
 
 ---
 
-## Feedback & Contributions
+## Contributing
 
-Issues, ideas, and PRs are welcome.
+Pull requests are welcome! <br />
+If you have ideas for enhancements or performance improvements, feel free to open an issue.<br />
+[https://github.com/RepulsiveCoder/react-lite-float-inputs](https://github.com/RepulsiveCoder/react-lite-float-inputs)
 
-If this library saved you time or DOM nodes — drop a ⭐️
+---
+
+## If you like it…
+
+Drop a ⭐ on the repo and use it to make your UI feel alive!
