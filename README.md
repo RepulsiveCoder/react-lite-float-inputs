@@ -196,8 +196,7 @@ Example:
 
 ## Compatibility
 
-* ✅ React 17+
-* ✅ React 18
+* ✅ React 18+
 * ✅ Next.js (App & Pages Router)
 * ✅ Vite / CRA
 
