@@ -22,3 +22,8 @@ lerna-debug.log*
 .env.production
 .DS_Store # macOS specific
 .npmrc
+
+# Testing
+index.html
+index.tsx
+index-test.tsx
