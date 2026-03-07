@@ -59,7 +59,7 @@ const TextArea: React.FC<TextAreaProps> = ({ label, ...props }) => {
     }
 
     return (
-        <div className="inputContainer">
+        <div className="rfl-input-wrapper">
             <textarea placeholder="" {...props} onFocus={onFocus} onBlur={onBlur} ></textarea>
             <label>{showOriginalLabel ? originalLabel??label : label}</label>
         </div>
@@ -96,7 +96,7 @@ const Select: React.FC<SelectProps> = ({ label, ...props }) => {
     }, []);
 
     return (
-        <div className="inputContainer">
+        <div className="rfl-input-wrapper">
             <select {...props} className={isBlankValue ? "input-select-blank-value" : ""} onFocus={onFocus} onBlur={onBlur} onChange={onChange} >
                 {props.children}
             </select>
