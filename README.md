@@ -54,7 +54,7 @@ yarn add react-lite-float-inputs
 ## Import
 
 ```js
-import Input, { TextArea, Select } from "react-lite-float-inputs";
+import { Input, TextArea, Select } from "react-lite-float-inputs";
 ```
 
 ---

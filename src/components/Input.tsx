@@ -78,7 +78,6 @@ const Select: React.FC<SelectProps> = ({ label, wrapperClassName, inputClassName
     const [ isBlankValue, setIsBlankValue ] = React.useState(true);
 
     const onFocus = (e: React.FocusEvent<HTMLSelectElement>) => {
-        console.log(e.target.value);
         setIsBlankValue(e.target.value === '' );
         if (props.onFocus && typeof props.onFocus === 'function') {
             props.onFocus(e);
@@ -126,7 +125,6 @@ const Checkbox: React.FC<CheckboxProps> = ({ label, wrapperClassName, inputClass
 
 const Radio: React.FC<RadioProps> = ({ label, options, selectedValue, wrapperClassName, inputClassName, labelClassName, ...props }) => {
     if (options && Array.isArray(options)) {
-        console.log('Options: ', options);
         return (
             <>
                 {options.map((option) => (
