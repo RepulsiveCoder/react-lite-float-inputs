@@ -1,14 +1,20 @@
 import React from "react";
 import "./Input.css";
 
-type InputProps = React.InputHTMLAttributes<HTMLInputElement> & { label?: string } ;
-type TextAreaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & { label?: string } ;
-type SelectProps = React.SelectHTMLAttributes<HTMLSelectElement> & { label?: string } ;
-type CheckboxProps = React.InputHTMLAttributes<HTMLInputElement> & { label?: string } ;
-type RadioProps = React.InputHTMLAttributes<HTMLInputElement> & { label?: string, options?: { value: string, label: string }[], selectedValue?: string } ;
+type ClassProps = {
+    wrapperClassName?: string;
+    inputClassName?: string;
+    labelClassName?: string;
+};
+
+type InputProps = React.InputHTMLAttributes<HTMLInputElement> & { label?: string } & ClassProps;
+type TextAreaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & { label?: string } & ClassProps;
+type SelectProps = React.SelectHTMLAttributes<HTMLSelectElement> & { label?: string } & ClassProps;
+type CheckboxProps = React.InputHTMLAttributes<HTMLInputElement> & { label?: string } & ClassProps;
+type RadioProps = React.InputHTMLAttributes<HTMLInputElement> & { label?: string, options?: { value: string, label: string }[], selectedValue?: string } & ClassProps;
 
 
-const Input: React.FC<InputProps> = ({ label, ...props }) => {
+const Input: React.FC<InputProps> = ({ label, wrapperClassName, inputClassName, labelClassName, ...props }) => {
     const [ showOriginalLabel, setShowOriginalLabel ] = React.useState(false);
     const originalLabel = label;
     if (props.placeholder && props.placeholder.length > 0) {
@@ -31,14 +37,14 @@ const Input: React.FC<InputProps> = ({ label, ...props }) => {
     }
 
     return (
-        <div className="rfl-input-wrapper">
-            <input type="text" placeholder="" {...props} onFocus={onFocus} onBlur={onBlur} />
-            <label>{showOriginalLabel ? originalLabel??label : label}</label>
+        <div className={`rfl-input-wrapper ${wrapperClassName ?? ""}`}>
+            <input type="text" placeholder="" className={inputClassName} {...props} onFocus={onFocus} onBlur={onBlur} />
+            <label className={labelClassName}>{showOriginalLabel ? originalLabel??label : label}</label>
         </div>
     );
 };
 
-const TextArea: React.FC<TextAreaProps> = ({ label, ...props }) => {
+const TextArea: React.FC<TextAreaProps> = ({ label, wrapperClassName, inputClassName, labelClassName, ...props }) => {
     const [ showOriginalLabel, setShowOriginalLabel ] = React.useState(false);
     const originalLabel = label;
     if (props.placeholder && props.placeholder.length > 0) {
@@ -61,14 +67,14 @@ const TextArea: React.FC<TextAreaProps> = ({ label, ...props }) => {
     }
 
     return (
-        <div className="rfl-input-wrapper">
-            <textarea placeholder="" {...props} onFocus={onFocus} onBlur={onBlur} ></textarea>
-            <label>{showOriginalLabel ? originalLabel??label : label}</label>
+        <div className={`rfl-input-wrapper ${wrapperClassName ?? ""}`}>
+            <textarea placeholder="" className={inputClassName} {...props} onFocus={onFocus} onBlur={onBlur} ></textarea>
+            <label className={labelClassName}>{showOriginalLabel ? originalLabel??label : label}</label>
         </div>
     );
 };
 
-const Select: React.FC<SelectProps> = ({ label, ...props }) => {
+const Select: React.FC<SelectProps> = ({ label, wrapperClassName, inputClassName, labelClassName, ...props }) => {
     const [ isBlankValue, setIsBlankValue ] = React.useState(true);
 
     const onFocus = (e: React.FocusEvent<HTMLSelectElement>) => {
@@ -98,35 +104,35 @@ const Select: React.FC<SelectProps> = ({ label, ...props }) => {
     }, []);
 
     return (
-        <div className="rfl-input-wrapper">
-            <select {...props} className={isBlankValue ? "input-select-blank-value" : ""} onFocus={onFocus} onBlur={onBlur} onChange={onChange} >
+        <div className={`rfl-input-wrapper ${wrapperClassName ?? ""}`}>
+            <select {...props} className={isBlankValue ? `input-select-blank-value ${inputClassName ?? ""}` : inputClassName} onFocus={onFocus} onBlur={onBlur} onChange={onChange} >
                 {props.children}
             </select>
-            <label>{label}</label>
+            <label className={labelClassName}>{label}</label>
         </div>
     );
 }
 
-const Checkbox: React.FC<CheckboxProps> = ({ label, ...props }) => {
+const Checkbox: React.FC<CheckboxProps> = ({ label, wrapperClassName, inputClassName, labelClassName, ...props }) => {
     return (
-        <div className="rfl-input-wrapper">
-            <label className="checkbox-label">
-            <input type="checkbox" {...props} />
+        <div className={`rfl-input-wrapper ${wrapperClassName ?? ""}`}>
+            <label className={`checkbox-label ${labelClassName ?? ""}`}>
+            <input type="checkbox" className={inputClassName} {...props} />
             {label}
             </label>
         </div>
     );
 };
 
-const Radio: React.FC<RadioProps> = ({ label, options, selectedValue, ...props }) => {
+const Radio: React.FC<RadioProps> = ({ label, options, selectedValue, wrapperClassName, inputClassName, labelClassName, ...props }) => {
     if (options && Array.isArray(options)) {
         console.log('Options: ', options);
         return (
             <>
                 {options.map((option) => (
-                    <div className="rfl-input-wrapper" key={option.value}>
-                        <label className="radio-label">
-                        <input type="radio" {...props} value={option.value} checked={selectedValue === option.value} />
+                    <div className={`rfl-input-wrapper ${wrapperClassName ?? ""}`} key={option.value}>
+                        <label className={`radio-label ${labelClassName ?? ""}`}>
+                        <input type="radio" className={inputClassName} {...props} value={option.value} checked={selectedValue === option.value} />
                         {option.label}
                         </label>
                     </div>
@@ -136,9 +142,9 @@ const Radio: React.FC<RadioProps> = ({ label, options, selectedValue, ...props }
     }
 
     return (
-        <div className="rfl-input-wrapper">
-            <label className="radio-label">
-            <input type="radio" {...props} />
+        <div className={`rfl-input-wrapper ${wrapperClassName ?? ""}`}>
+            <label className={`radio-label ${labelClassName ?? ""}`}>
+            <input type="radio" className={inputClassName} {...props} />
             {label}
             </label>
         </div>
