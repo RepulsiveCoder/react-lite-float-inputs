@@ -201,9 +201,9 @@ That’s it. No extra noise.
 | `onChange`    | `function` | Change handler           |
 | `required`    | `boolean`  | Marks field as required  |
 | `disabled`    | `boolean`  | Disables the field       |
+| `ClassName`| `string`   | Custom class for input |
 | `wrapperClassName`| `string`   | Custom class for wrapper |
 | `labelClassName`| `string`   | Custom class for label |
-| `inputClassName`| `string`   | Custom class for input |
 
 ### Input-specific
 
