@@ -47,7 +47,7 @@
         padding: 16px 16px 12px;
     }
 
-    label:not(.checkbox-label):not(.radio-label) {
+    label:not(.checkbox-label, .radio-label) {
         position: absolute;
         top: 0;
         left: 0;
