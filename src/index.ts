@@ -1,4 +1,4 @@
-import Input, { TextArea, Select } from "./components/Input";
+import Input, { TextArea, Select, Checkbox, Radio } from "./components/Input";
 
 export default Input;
-export { TextArea, Select };
+export { Input, TextArea, Select, Checkbox, Radio };

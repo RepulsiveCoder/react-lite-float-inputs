@@ -152,4 +152,4 @@ const Radio: React.FC<RadioProps> = ({ label, options, selectedValue, wrapperCla
 };
 
 export default Input;
-export { TextArea, Select, Checkbox, Radio };
+export { Input, TextArea, Select, Checkbox, Radio };
