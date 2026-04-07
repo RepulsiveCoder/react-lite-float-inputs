@@ -4,6 +4,8 @@ import "./Input.css";
 type InputProps = React.InputHTMLAttributes<HTMLInputElement> & { label?: string } ;
 type TextAreaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & { label?: string } ;
 type SelectProps = React.SelectHTMLAttributes<HTMLSelectElement> & { label?: string } ;
+type CheckboxProps = React.InputHTMLAttributes<HTMLInputElement> & { label?: string } ;
+type RadioProps = React.InputHTMLAttributes<HTMLInputElement> & { label?: string, options?: { value: string, label: string }[], selectedValue?: string } ;
 
 
 const Input: React.FC<InputProps> = ({ label, ...props }) => {
@@ -105,5 +107,43 @@ const Select: React.FC<SelectProps> = ({ label, ...props }) => {
     );
 }
 
+const Checkbox: React.FC<CheckboxProps> = ({ label, ...props }) => {
+    return (
+        <div className="rfl-input-wrapper">
+            <label className="checkbox-label">
+            <input type="checkbox" {...props} />
+            {label}
+            </label>
+        </div>
+    );
+};
+
+const Radio: React.FC<RadioProps> = ({ label, options, selectedValue, ...props }) => {
+    if (options && Array.isArray(options)) {
+        console.log('Options: ', options);
+        return (
+            <>
+                {options.map((option) => (
+                    <div className="rfl-input-wrapper" key={option.value}>
+                        <label className="radio-label">
+                        <input type="radio" {...props} value={option.value} checked={selectedValue === option.value} />
+                        {option.label}
+                        </label>
+                    </div>
+                ))}
+            </>
+        );
+    }
+
+    return (
+        <div className="rfl-input-wrapper">
+            <label className="radio-label">
+            <input type="radio" {...props} />
+            {label}
+            </label>
+        </div>
+    );
+};
+
 export default Input;
-export { TextArea, Select };
+export { TextArea, Select, Checkbox, Radio };

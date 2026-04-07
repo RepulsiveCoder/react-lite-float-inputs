@@ -106,6 +106,50 @@ import Input, { TextArea, Select } from "react-lite-float-inputs";
 </Select>
 ```
 
+---
+
+## Checkbox Usage
+
+```jsx
+<Checkbox
+  name="agree"
+  label="I agree to the terms and conditions"
+/>
+```
+
+---
+
+## Radio Usage Generic
+
+```jsx
+<Radio
+  name="fruit"
+  label="Apple"
+  value="apple"
+/>
+<Radio
+  name="fruit"
+  label="orange"
+  value="Orange"
+/>
+```
+
+---
+
+## Radio Usage Multiple
+
+```jsx
+<Radio
+  name="fruit"
+  options={[
+      { value: 'apple', label: 'Apple' },
+      { value: 'orange', label: 'Orange' },
+      { value: 'banana', label: 'Banana' }
+  ]}
+  selectedValue={'apple'}
+/>
+```
+
 ### Customize Colors
 ```
 :root {
