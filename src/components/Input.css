@@ -7,7 +7,7 @@
     --float-inputs-color-border: var(--input-color-border, color-mix(in srgb, var(--float-inputs-color-foreground) 50%, transparent 10%));
     --float-inputs-color-placeholder: var(--input-color-placeholder, color-mix(in srgb, var(--float-inputs-color-foreground) 60%, transparent 40%));
 
-    input, textarea, select {
+    input:not([type=range]), textarea, select {
         width: 100%;
         padding: 14px 16px 8px;
         font-size: 1rem;
@@ -94,6 +94,71 @@
 
         input[type=radio] {
             border-radius: 50%;
+        }
+    }
+
+    &.rfl-range-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        &.top, &.bottom {
+            flex-direction: column;
+        }
+
+        input[type=range] {
+            flex: 1;
+            width: 100%;
+            height: 20px;
+            -webkit-appearance: none;
+            appearance: none;
+            outline: none;
+            border-radius: 6px;
+            background: var(--float-inputs-color-background);
+            outline: none;
+            transition: background 0.3s;
+
+            &::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                appearance: none;
+                width: 22px;
+                height: 22px;
+                border-radius: 8px;
+                background: var(--float-inputs-color-foreground);
+                cursor: pointer;
+                box-shadow: #0003 0px 3px 8px;
+                cursor: grab;
+                transition: background 0.3s;
+
+                &:hover {
+                    background: color-mix(in srgb, var(--float-inputs-color-foreground) 80%, transparent);
+                }
+            }
+
+             &::-moz-range-thumb {
+                width: 22px;
+                height: 22px;
+                border-radius: 8px;
+                background: var(--float-inputs-color-foreground);
+                cursor: pointer;
+                box-shadow: #0003 0px 3px 8px;
+                cursor: grab;
+                transition: background 0.3s;
+             }
+
+            &:hover {
+                background: color-mix(in srgb, var(--float-inputs-color-background) 80%, transparent);
+            }
+        }
+
+        .range-value {
+            min-width: 24px;
+            text-align: right;
+            font-size: 0.9rem;
+            padding: 2px 6px;
+            border: 1px solid var(--float-inputs-color-border);
+            border-radius: 6px;
+            color: var(--float-inputs-color-foreground);
         }
     }
 }

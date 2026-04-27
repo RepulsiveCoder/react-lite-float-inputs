@@ -34,6 +34,9 @@ Designed for developers who want clean markup, smooth UX, and full control — w
   * `Input`
   * `TextArea`
   * `Select`
+  * `Checkbox`
+  * `Radio`
+  * `RangeInput`
 
 ---
 
@@ -54,7 +57,7 @@ yarn add react-lite-float-inputs
 ## Import
 
 ```js
-import { Input, TextArea, Select } from "react-lite-float-inputs";
+import { Input, TextArea, Select, Checkbox, Radio, RangeInput } from "react-lite-float-inputs";
 ```
 
 ---
@@ -133,7 +136,6 @@ import { Input, TextArea, Select } from "react-lite-float-inputs";
   value="Orange"
 />
 ```
-
 ---
 
 ## Radio Usage Multiple
@@ -147,6 +149,17 @@ import { Input, TextArea, Select } from "react-lite-float-inputs";
       { value: 'banana', label: 'Banana' }
   ]}
   selectedValue={'apple'}
+/>
+```
+
+---
+
+## RangeInput Usage
+
+```jsx
+<RangeInput
+  value={form.range}
+  onChange={(e) => setForm({ ...form, range: Number(e.target.value) })}
 />
 ```
 
@@ -271,6 +284,11 @@ If you have ideas for enhancements or performance improvements, feel free to ope
 [https://github.com/RepulsiveCoder/react-lite-float-inputs](https://github.com/RepulsiveCoder/react-lite-float-inputs)
 
 ---
+
+---
+## Change Log
+### - 2026-04-27
+- **Added**: RangeInput with basic functionality. It includes a slider and a value display box (defaults to the right, but can be customized via the labelPosition prop)
 
 ## If you like it…
 

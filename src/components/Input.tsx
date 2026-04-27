@@ -11,6 +11,7 @@ type TextAreaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & { label
 type SelectProps = React.SelectHTMLAttributes<HTMLSelectElement> & { label?: string } & ClassProps;
 type CheckboxProps = React.InputHTMLAttributes<HTMLInputElement> & { label?: string } & ClassProps;
 type RadioProps = React.InputHTMLAttributes<HTMLInputElement> & { label?: string, options?: { value: string, label: string }[], selectedValue?: string } & ClassProps;
+type RangeInputProps = React.InputHTMLAttributes<HTMLInputElement> & ClassProps & { labelPosition?: "top" | "bottom" | "left" | "right" };
 
 
 const Input: React.FC<InputProps> = ({ label, wrapperClassName, labelClassName, ...props }) => {
@@ -148,5 +149,15 @@ const Radio: React.FC<RadioProps> = ({ label, options, selectedValue, wrapperCla
     );
 };
 
+const RangeInput: React.FC<RangeInputProps> = ({ labelPosition = "right", wrapperClassName="flex items-center gap-2", labelClassName="text-sm min-w-8! border text-right border-gray-600 rounded-md px-1", ...props }) => {
+    return (
+        <div className={`rfl-input-wrapper rfl-range-wrapper ${labelPosition} ${wrapperClassName ?? ""}`}>
+            {labelPosition === "top" || labelPosition === "left" ? <div className={`range-value ${labelClassName ?? ""}`}>{props.value}</div> : null}
+            <input type="range" {...props}  />
+            {labelPosition === "bottom" || labelPosition === "right" ? <div className={`range-value ${labelClassName ?? ""}`}>{props.value}</div> : null}
+        </div>
+    );
+};
+
 export default Input;
-export { Input, TextArea, Select, Checkbox, Radio };
+export { Input, TextArea, Select, Checkbox, Radio, RangeInput };
