@@ -6,12 +6,25 @@ type ClassProps = {
     labelClassName?: string;
 };
 
+type LabelPrefixSuffixProps = {
+    labelPrefix?: string | React.ReactNode | null | undefined;
+    labelSuffix?: string | React.ReactNode | null | undefined;
+}
+
 type InputProps = React.InputHTMLAttributes<HTMLInputElement> & { label?: string } & ClassProps;
 type TextAreaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & { label?: string } & ClassProps;
 type SelectProps = React.SelectHTMLAttributes<HTMLSelectElement> & { label?: string } & ClassProps;
-type CheckboxProps = React.InputHTMLAttributes<HTMLInputElement> & { label?: string } & ClassProps;
-type RadioProps = React.InputHTMLAttributes<HTMLInputElement> & { label?: string, options?: { value: string, label: string }[], selectedValue?: string } & ClassProps;
 type RangeInputProps = React.InputHTMLAttributes<HTMLInputElement> & ClassProps & { labelPosition?: "top" | "bottom" | "left" | "right" };
+type CheckboxProps = React.InputHTMLAttributes<HTMLInputElement> & { label?: string | React.ReactNode } & LabelPrefixSuffixProps & ClassProps;
+type RadioProps = React.InputHTMLAttributes<HTMLInputElement> &
+    {
+        label?: string | React.ReactNode;
+        options?: ({
+            value: string;
+            label: string | React.ReactNode;
+        } & LabelPrefixSuffixProps)[];
+        selectedValue?: string;
+    } & LabelPrefixSuffixProps & ClassProps;
 
 
 const Input: React.FC<InputProps> = ({ label, wrapperClassName, labelClassName, ...props }) => {
@@ -112,43 +125,6 @@ const Select: React.FC<SelectProps> = ({ label, wrapperClassName, labelClassName
     );
 }
 
-const Checkbox: React.FC<CheckboxProps> = ({ label, wrapperClassName, labelClassName, ...props }) => {
-    return (
-        <div className={`rfl-input-wrapper ${wrapperClassName ?? ""}`}>
-            <label className={`checkbox-label ${labelClassName ?? ""}`}>
-            <input type="checkbox" {...props} />
-            {label}
-            </label>
-        </div>
-    );
-};
-
-const Radio: React.FC<RadioProps> = ({ label, options, selectedValue, wrapperClassName, labelClassName, ...props }) => {
-    if (options && Array.isArray(options)) {
-        return (
-            <>
-                {options.map((option) => (
-                    <div className={`rfl-input-wrapper ${wrapperClassName ?? ""}`} key={option.value}>
-                        <label className={`radio-label ${labelClassName ?? ""}`}>
-                        <input type="radio" {...props} value={option.value} checked={selectedValue === option.value} />
-                        {option.label}
-                        </label>
-                    </div>
-                ))}
-            </>
-        );
-    }
-
-    return (
-        <div className={`rfl-input-wrapper ${wrapperClassName ?? ""}`}>
-            <label className={`radio-label ${labelClassName ?? ""}`}>
-            <input type="radio" {...props} />
-            {label}
-            </label>
-        </div>
-    );
-};
-
 const RangeInput: React.FC<RangeInputProps> = ({ labelPosition = "right", wrapperClassName="flex items-center gap-2", labelClassName="text-sm min-w-8! border text-right border-gray-600 rounded-md px-1", ...props }) => {
     return (
         <div className={`rfl-input-wrapper rfl-range-wrapper ${labelPosition} ${wrapperClassName ?? ""}`}>
@@ -159,5 +135,48 @@ const RangeInput: React.FC<RangeInputProps> = ({ labelPosition = "right", wrappe
     );
 };
 
+const Checkbox: React.FC<CheckboxProps> = ({ label, wrapperClassName, labelClassName, labelPrefix, labelSuffix, ...props }) => {
+    return (
+        <div className={`rfl-input-wrapper ${wrapperClassName ?? ""}`}>
+            {labelPrefix}
+            <label className={`checkbox-label ${labelClassName ?? ""}`}>
+                <input type="checkbox" {...props} />
+                {label}
+            </label>
+            {labelSuffix}
+        </div>
+    );
+};
+
+const Radio: React.FC<RadioProps> = ({ label, options, selectedValue, wrapperClassName, labelClassName, labelPrefix, labelSuffix, ...props }) => {
+    if (options && Array.isArray(options)) {
+        return (
+            <>
+                {options.map((option) => (
+                    <div className={`rfl-input-wrapper ${wrapperClassName ?? ""}`} key={option.value}>
+                        {option.labelPrefix}
+                        <label className={`radio-label ${labelClassName ?? ""}`}>
+                            <input type="radio" {...props} value={option.value} checked={selectedValue === option.value} />
+                            {option.label}
+                        </label>
+                        {option.labelSuffix}
+                    </div>
+                ))}
+            </>
+        );
+    }
+
+    return (
+        <div className={`rfl-input-wrapper ${wrapperClassName ?? ""}`}>
+            {labelPrefix}
+            <label className={`radio-label ${labelClassName ?? ""}`}>
+                <input type="radio" {...props} />
+                {label}
+            </label>
+            {labelSuffix}
+        </div>
+    );
+};
+
 export default Input;
-export { Input, TextArea, Select, Checkbox, Radio, RangeInput };
+export { Input, TextArea, Select, RangeInput, Checkbox, Radio };

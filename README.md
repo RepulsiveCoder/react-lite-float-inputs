@@ -207,16 +207,19 @@ That’s it. No extra noise.
 
 | Prop          | Type       | Description              |
 | ------------- | ---------- | ------------------------ |
-| `label`       | `string`   | Floating label text      |
+| `label`       | `string` \| React.ReactNode   | Floating label text, React.ReactNode for Checkbox and Radio     |
 | `placeholder` | `string`   | Initial placeholder text |
 | `name`        | `string`   | Input name               |
 | `value`       | `string`   | Controlled value         |
 | `onChange`    | `function` | Change handler           |
 | `required`    | `boolean`  | Marks field as required  |
 | `disabled`    | `boolean`  | Disables the field       |
+| `options`     | Array of Option  | For Radio, See Radio-specific below     |
 | `ClassName`| `string`   | Custom class for input |
 | `wrapperClassName`| `string`   | Custom class for wrapper |
 | `labelClassName`| `string`   | Custom class for label |
+| `labelPrefix`| `string` \| React.ReactNode  | Checkbox and Radio |
+| `labelSuffix`| `string` \| React.ReactNode  | Checkbox and Radio |
 
 ### Input-specific
 
@@ -229,6 +232,19 @@ That’s it. No extra noise.
 | Prop   | Type     | Description    |
 | ------ | -------- | -------------- |
 | `rows` | `number` | Number of rows |
+
+---
+
+### Radio-specific
+
+`options`[]
+
+| Prop   | Type     | Description    |
+| ------ | -------- | -------------- |
+| `value`       | `string`   | Controlled value         |
+| `label`       | `string` \| React.ReactNode   | Label Radio     |
+| `labelPrefix`| `string` \| React.ReactNode  | Checkbox and Radio |
+| `labelSuffix`| `string` \| React.ReactNode  | Checkbox and Radio |
 
 ---
 
@@ -287,6 +303,10 @@ If you have ideas for enhancements or performance improvements, feel free to ope
 
 ---
 ## Change Log
+### - 2026-04-30
+- **Added**: Support for React.ReactNode in Checkbox and Radio labels.
+- **Added**: labelPrefix and labelSuffix for Checkbox and Radio.
+
 ### - 2026-04-27
 - **Added**: RangeInput with basic functionality. It includes a slider and a value display box (defaults to the right, but can be customized via the labelPosition prop)
 
