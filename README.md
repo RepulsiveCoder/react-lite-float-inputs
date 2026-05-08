@@ -303,6 +303,9 @@ If you have ideas for enhancements or performance improvements, feel free to ope
 
 ---
 ## Change Log
+### - 2026-05-09
+- **Refactor**: labelPosition "none" is added.
+
 ### - 2026-04-30
 - **Added**: Support for React.ReactNode in Checkbox and Radio labels.
 - **Added**: labelPrefix and labelSuffix for Checkbox and Radio.

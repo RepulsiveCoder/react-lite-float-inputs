@@ -14,7 +14,7 @@ type LabelPrefixSuffixProps = {
 type InputProps = React.InputHTMLAttributes<HTMLInputElement> & { label?: string } & ClassProps;
 type TextAreaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & { label?: string } & ClassProps;
 type SelectProps = React.SelectHTMLAttributes<HTMLSelectElement> & { label?: string } & ClassProps;
-type RangeInputProps = React.InputHTMLAttributes<HTMLInputElement> & ClassProps & { labelPosition?: "top" | "bottom" | "left" | "right" };
+type RangeInputProps = React.InputHTMLAttributes<HTMLInputElement> & ClassProps & { labelPosition?: "top" | "bottom" | "left" | "right" | "none" };
 type CheckboxProps = React.InputHTMLAttributes<HTMLInputElement> & { label?: string | React.ReactNode } & LabelPrefixSuffixProps & ClassProps;
 type RadioProps = React.InputHTMLAttributes<HTMLInputElement> &
     {
